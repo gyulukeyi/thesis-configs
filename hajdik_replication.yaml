@@ -1,0 +1,44 @@
+# config_lstm_vs6_2.yaml
+
+save_data: data_vs6_2/data
+
+src_vocab: data_vs6_2/train-src.vocab
+tgt_vocab: data_vs6_2/train-tgt.vocab
+
+data:
+    corpus_1:
+        path_src: data_vs6_2/train-src.txt
+        path_tgt: data_vs6_2/train-tgt.txt
+    valid:
+        path_src: data/dev/dev-src.txt
+        path_tgt: data/dev/dev-tgt.txt
+
+src_vocab_size: 100000
+tgt_vocab_size: 100000
+src_seq_length: 400
+tgt_seq_length: 400
+shuffle: True
+data_type: text
+
+# Training
+
+layers: 2
+dropout: 0.3
+word_vec_size: 500
+batch_type: sents
+batch_size: 8
+valid_batch_size: 16
+max_grad_norm: 5
+param_init_glorot: True
+encoder_type: brnn
+decoder_type: rnn
+rnn_type: LSTM
+rnn_size: 800
+save_model: models/rep
+learning_rate: 0.001
+start_decay_steps: 10000000
+opt: adam
+train_step: 4000000
+save_checkpoint_steps: 10000
+world_size: 1
+gpu_ranks: [0]
